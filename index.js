@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import Messages from "./dbMessages.js";
 import Pusher from "pusher";
 import cors from "cors";
+import dotenv from 'dotenv'
+dotenv.config();
 
 
 // import cors from "cors";
@@ -23,7 +25,8 @@ app.use(cors());
 
 
 const connection_url =
-    "mongodb+srv://mohinhaq:mohin321@cluster0.irthl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.irthl.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+    console.log(process.env.DB_USER,process.env.DB_PASS,process.env.DB_NAME)
     const pusher = new Pusher({
         appId: "1358307",
         key: "9a24c834c502293df0e0",
